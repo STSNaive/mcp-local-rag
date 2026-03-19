@@ -1,7 +1,7 @@
 {
-  "name": "mcp-local-rag",
-  "version": "0.9.0",
-  "description": "Local RAG MCP Server - Easy-to-setup document search with minimal configuration",
+  "name": "@stsnaive/mcp-local-rag",
+  "version": "0.9.0-fix.1",
+  "description": "Fork of mcp-local-rag with Codex MCP resource compatibility fix",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
@@ -37,7 +37,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shinpr/mcp-local-rag.git"
+    "url": "git+https://github.com/STSNaive/mcp-local-rag.git"
   },
   "scripts": {
     "build": "tsc && tsc-alias",
@@ -94,5 +94,5 @@
       "biome format --write --no-errors-on-unmatched"
     ]
   },
-  "mcpName": "io.github.shinpr/mcp-local-rag"
+  "mcpName": "io.github.stsnaive/mcp-local-rag"
 }

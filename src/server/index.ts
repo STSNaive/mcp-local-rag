@@ -9,8 +9,11 @@ import {
   type Annotations,
   CallToolRequestSchema,
   ErrorCode,
+  ListResourcesRequestSchema,
+  ListResourceTemplatesRequestSchema,
   ListToolsRequestSchema,
   McpError,
+  ReadResourceRequestSchema,
 } from '@modelcontextprotocol/sdk/types.js'
 import { SemanticChunker } from '../chunker/index.js'
 import { Embedder } from '../embedder/index.js'
@@ -64,7 +67,7 @@ export class RAGServer {
     this.excludePaths = [`${resolve(config.dbPath)}/`, `${resolve(config.cacheDir)}/`]
     this.server = new Server(
       { name: 'rag-mcp-server', version: '1.0.0' },
-      { capabilities: { tools: {} } }
+      { capabilities: { tools: {}, resources: {} } }
     )
 
     // Component initialization
@@ -130,6 +133,23 @@ export class RAGServer {
     this.server.setRequestHandler(ListToolsRequestSchema, async () => ({
       tools: toolDefinitions,
     }))
+
+    // Resource handlers (empty stubs to prevent -32601 errors with clients like Codex)
+    this.server.setRequestHandler(ListResourcesRequestSchema, async () => {
+      return { resources: [] }
+    })
+
+    this.server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
+      return {
+        contents: [
+          { uri: request.params.uri, mimeType: 'text/plain', text: 'No resources available' },
+        ],
+      }
+    })
+
+    this.server.setRequestHandler(ListResourceTemplatesRequestSchema, async () => {
+      return { resourceTemplates: [] }
+    })
 
     // Tool invocation
     this.server.setRequestHandler(
