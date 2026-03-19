@@ -1,0 +1,2 @@
+# Force LF line endings for all text files (required for biome on Windows)
+* text=auto eol=lf
