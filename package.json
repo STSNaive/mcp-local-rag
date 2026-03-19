@@ -1,6 +1,6 @@
 {
   "name": "@stsnaive/mcp-local-rag",
-  "version": "0.9.0-fix.1",
+  "version": "0.10.0-fix.1",
   "description": "Fork of mcp-local-rag with Codex MCP resource compatibility fix",
   "type": "module",
   "main": "dist/index.js",
